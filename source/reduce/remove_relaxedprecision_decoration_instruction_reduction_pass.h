@@ -12,25 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef SOURCE_REDUCE_REMOVE_OPNAME_INSTRUCTION_REDUCTION_PASS_H_
-#define SOURCE_REDUCE_REMOVE_OPNAME_INSTRUCTION_REDUCTION_PASS_H_
+#ifndef SOURCE_REDUCE_REMOVE_RELAXEDPRECISION_DECORATION_INSTRUCTION_REDUCTION_PASS_H_
+#define SOURCE_REDUCE_REMOVE_RELAXEDPRECISION_DECORATION_INSTRUCTION_REDUCTION_PASS_H_
 
 #include "reduction_pass.h"
 
 namespace spvtools {
 namespace reduce {
 
-// A reduction pass for removing OpName instructions.  As well as making the
-// module smaller, removing an OpName instruction may create opportunities to
-// remove the instruction that create the id to which the OpName applies.
-class RemoveOpNameInstructionReductionPass : public ReductionPass {
+// A reduction pass for removing RelaxedPrecisionDecoration instructions.  As well as making the
+// module smaller, removing an RelaxedPrecisionDecoration instruction may create opportunities to
+// remove the instruction that create the id to which the RelaxedPrecisionDecoration applies.
+class RemoveRelaxedPrecisionDecorationInstructionReductionPass : public ReductionPass {
  public:
   // Creates the reduction pass in the context of the given target environment
   // |target_env|
-  explicit RemoveOpNameInstructionReductionPass(const spv_target_env target_env)
+  explicit RemoveRelaxedPrecisionDecorationInstructionReductionPass(const spv_target_env target_env)
       : ReductionPass(target_env) {}
 
-  ~RemoveOpNameInstructionReductionPass() override = default;
+  ~RemoveRelaxedPrecisionDecorationInstructionReductionPass() override = default;
 
   // The name of this pass.
   std::string GetName() const final;
@@ -47,4 +47,4 @@ class RemoveOpNameInstructionReductionPass : public ReductionPass {
 }  // namespace reduce
 }  // namespace spvtools
 
-#endif  // SOURCE_REDUCE_REMOVE_OPNAME_INSTRUCTION_REDUCTION_PASS_H_
+#endif  // SOURCE_REDUCE_REMOVE_RELAXEDPRECISION_DECORATION_INSTRUCTION_REDUCTION_PASS_H_
