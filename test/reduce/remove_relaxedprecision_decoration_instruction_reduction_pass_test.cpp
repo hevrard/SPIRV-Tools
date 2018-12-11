@@ -22,7 +22,8 @@ namespace spvtools {
 namespace reduce {
 namespace {
 
-TEST(RemoveRelaxedPrecisionDecorationInstructionReductionPassTest, NothingToRemove) {
+TEST(RemoveRelaxedPrecisionDecorationInstructionReductionPassTest,
+     NothingToRemove) {
   const std::string source = R"(
                OpCapability Shader
           %1 = OpExtInstImport "GLSL.std.450"
@@ -42,7 +43,9 @@ TEST(RemoveRelaxedPrecisionDecorationInstructionReductionPassTest, NothingToRemo
   const auto consumer = nullptr;
   const auto context =
       BuildModule(env, consumer, source, kReduceAssembleOption);
-  const auto pass = TestSubclass<RemoveRelaxedPrecisionDecorationInstructionReductionPass>(env);
+  const auto pass =
+      TestSubclass<RemoveRelaxedPrecisionDecorationInstructionReductionPass>(
+          env);
   const auto ops = pass.WrapGetAvailableOpportunities(context.get());
   ASSERT_EQ(0, ops.size());
 }
@@ -80,7 +83,9 @@ TEST(RemoveOpnameInstructionReductionPassTest, RemoveSingleDecoration) {
   const auto consumer = nullptr;
   const auto context =
       BuildModule(env, consumer, original, kReduceAssembleOption);
-  const auto pass = TestSubclass<RemoveRelaxedPrecisionDecorationInstructionReductionPass>(env);
+  const auto pass =
+      TestSubclass<RemoveRelaxedPrecisionDecorationInstructionReductionPass>(
+          env);
   const auto ops = pass.WrapGetAvailableOpportunities(context.get());
   ASSERT_EQ(1, ops.size());
   ASSERT_TRUE(ops[0]->PreconditionHolds());

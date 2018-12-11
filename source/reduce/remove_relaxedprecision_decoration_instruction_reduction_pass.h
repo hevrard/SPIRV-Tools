@@ -20,17 +20,21 @@
 namespace spvtools {
 namespace reduce {
 
-// A reduction pass for removing RelaxedPrecisionDecoration instructions.  As well as making the
-// module smaller, removing an RelaxedPrecisionDecoration instruction may create opportunities to
-// remove the instruction that create the id to which the RelaxedPrecisionDecoration applies.
-class RemoveRelaxedPrecisionDecorationInstructionReductionPass : public ReductionPass {
+// A reduction pass for removing RelaxedPrecision decoration instructions. As
+// well as making the module smaller, removing an RelaxedPrecision decoration
+// instruction may create opportunities to remove the instruction that create
+// the id to which this decoration applies.
+class RemoveRelaxedPrecisionDecorationInstructionReductionPass
+    : public ReductionPass {
  public:
   // Creates the reduction pass in the context of the given target environment
   // |target_env|
-  explicit RemoveRelaxedPrecisionDecorationInstructionReductionPass(const spv_target_env target_env)
+  explicit RemoveRelaxedPrecisionDecorationInstructionReductionPass(
+      const spv_target_env target_env)
       : ReductionPass(target_env) {}
 
-  ~RemoveRelaxedPrecisionDecorationInstructionReductionPass() override = default;
+  ~RemoveRelaxedPrecisionDecorationInstructionReductionPass() override =
+      default;
 
   // The name of this pass.
   std::string GetName() const final;

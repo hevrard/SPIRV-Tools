@@ -23,14 +23,16 @@ namespace reduce {
 using namespace opt;
 
 std::vector<std::unique_ptr<ReductionOpportunity>>
-RemoveRelaxedPrecisionDecorationInstructionReductionPass::GetAvailableOpportunities(
-    opt::IRContext* context) const {
+RemoveRelaxedPrecisionDecorationInstructionReductionPass::
+    GetAvailableOpportunities(opt::IRContext* context) const {
   std::vector<std::unique_ptr<ReductionOpportunity>> result;
 
   for (auto& inst : context->module()->annotations()) {
-    // We are interested in the second (index 1) operand: OpDecorate %id RelaxedPrecision
+    // Check the second (index 1) operand: OpDecorate %id RelaxedPrecision
     uint32_t operand_index = 1;
-    if (inst.opcode() == SpvOpDecorate && inst.GetSingleWordOperand(operand_index) == SpvDecorationRelaxedPrecision) {
+    if (inst.opcode() == SpvOpDecorate &&
+        inst.GetSingleWordOperand(operand_index) ==
+            SpvDecorationRelaxedPrecision) {
       result.push_back(
           MakeUnique<RemoveInstructionReductionOpportunity>(&inst));
     }
@@ -38,7 +40,8 @@ RemoveRelaxedPrecisionDecorationInstructionReductionPass::GetAvailableOpportunit
   return result;
 }
 
-std::string RemoveRelaxedPrecisionDecorationInstructionReductionPass::GetName() const {
+std::string RemoveRelaxedPrecisionDecorationInstructionReductionPass::GetName()
+    const {
   return "RemoveRelaxedPrecisionDecorationInstructionReductionPass";
 }
 
