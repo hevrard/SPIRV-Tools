@@ -14,6 +14,7 @@
 
 add_spvtools_unittest(TARGET reduce
         SRCS operand_to_constant_reduction_pass_test.cpp
+        operand_to_undef_reduction_pass_test.cpp
         operand_to_dominating_id_reduction_pass_test.cpp
         reduce_test_util.cpp
         reduce_test_util.h
@@ -22,6 +23,7 @@ add_spvtools_unittest(TARGET reduce
         remove_relaxedprecision_decoration_instruction_reduction_pass_test.cpp
         remove_unreferenced_instruction_reduction_pass_test.cpp
         structured_loop_to_selection_reduction_pass_test.cpp
+        validation_during_reduction_test.cpp
         LIBS SPIRV-Tools-reduce
         )
 
