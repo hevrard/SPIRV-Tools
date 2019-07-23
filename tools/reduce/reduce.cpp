@@ -208,14 +208,11 @@ int main(int argc, const char** argv) {
       });
 
   reducer.AddReductionPass(
-      spvtools::MakeUnique<RemoveOpNameInstructionReductionPass>(target_env));
-=======
       spvtools::MakeUnique<OperandToUndefReductionPass>(target_env));
->>>>>>> master
-
-
-
-
+  reducer.AddReductionPass(
+      spvtools::MakeUnique<
+          RemoveRelaxedPrecisionDecorationInstructionReductionPass>(
+          target_env));
   reducer.AddReductionPass(
       spvtools::MakeUnique<OperandToConstReductionPass>(target_env));
   reducer.AddReductionPass(
